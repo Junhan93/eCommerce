@@ -21,6 +21,19 @@ class DBController{
         // echo "Connection successful!";
     }
 
+    public function __destruct(){
+        // TODO: implement __destruct() method
+        $this->closeConnection();
+    }
+
+
+    // mysqli closing connection
+    protected function closeConnection(){
+        if($this->conn != null){
+            $this->conn->close();
+            $this->conn = null;
+        }
+    }
 }
 
 ?>
