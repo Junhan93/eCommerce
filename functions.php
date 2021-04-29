@@ -15,15 +15,10 @@ $db = new DBController();
 // dependency injection - we can now access all the DB controller class using public $db = null property
 // Product object
 $product = new Product($db);
-
+$product_shuffle = $product->getData(); // now we can access $product_shuffle anywhere in the project
 
 //  Cart object
 $Cart = new Cart($db);
-// $arr = array(
-//     'user_id' => 1,
-//     'item_id' => 4
-// );
-// $Cart->insertIntoCart($arr);
 
 
 // this will show an array of all the data
