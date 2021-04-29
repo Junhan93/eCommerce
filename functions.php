@@ -20,7 +20,6 @@ $product_shuffle = $product->getData(); // now we can access $product_shuffle an
 //  Cart object
 $Cart = new Cart($db);
 
-
 // this will show an array of all the data
 // print_r($product->getData());
 
