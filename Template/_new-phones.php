@@ -41,9 +41,9 @@
                         <input type="hidden" name="user_id" value="<?php echo '1'; ?>">
                         <?php
                             if(in_array( $item['item_id'], $Cart->getCartId($product->getData('cart')) ?? [] )){
-                                echo '<button type="submit" name="top_sale_submit" disabled class="btn btn-success font-size-12">In the cart</button>';
+                                echo '<button type="submit" name="new_phones_submit" disabled class="btn btn-success font-size-12">In the cart</button>';
                             }else{
-                                echo '<button type="submit" name="top_sale_submit" class="btn btn-warning font-size-12">Add to cart</button>';
+                                echo '<button type="submit" name="new_phones_submit" class="btn btn-warning font-size-12">Add to cart</button>';
 
                             }
                         ?>                    
