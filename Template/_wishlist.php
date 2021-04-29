@@ -3,25 +3,27 @@
         if(isset($_POST['delete-cart-submit'])){
             $deletedrecord = $Cart->deleteCart($_POST['item_id']);
         }
-        
-        // save for later
-        if(isset($_POST['wishlist-submit'])) {
-            $Cart->saveForLater($_POST['item_id']);
+
+        // cart submit
+        if(isset($_POST['cart-submit'])){
+            $Cart->saveForLater($_POST['item_id'], 'cart', 'wishlist');
         }
+
     }
+
 ?>
 
 <!-- Shopping cart section -->
 <section id="cart" class="py-3 mb-5">
     <div class="container-fluid w-75">
-        <h5 class="font-baloo font-size-20">Shopping Cart</h5>
+        <h5 class="font-baloo font-size-20">Wishlist</h5>
 
         <!-- Shopping cart items -->
         <div class="row">
             <div class="col-sm-9">
                 <!-- cart item 1 -->
                 <?php 
-                    foreach($product->getData('cart') as $item):
+                    foreach($product->getData('wishlist') as $item):
                         // filter by item_id
                         $cart = $product->getProduct($item['item_id']);
                         // this means subTotal is an array
@@ -49,22 +51,16 @@
 
                         <!-- product quantity -->
                         <div class="qty d-flex pt-2">
-                            <div class="d-flex font-rale w-25">
-                                <button class="qty-up border bg-light" data-id="<?php echo $item['item_id'] ?? '0'; ?>"><i class="fas fa-angle-up"></i></button>
-                                <!-- 'disabled' makes sure user doesnt add imaginary quantity -->
-                                <input type="text" data-id="<?php echo $item['item_id'] ?? '0'; ?>" class="qty_input border px-2 w-100 bg-light" disabled value="1" placeholder="1">
-                                <button class="qty-down border bg-light" data-id="<?php echo $item['item_id'] ?? '0'; ?>"><i class="fas fa-angle-down"></i></button>    
-                            </div>
 
                             <!-- delete button -->
                             <form method="post">
                                 <input type="hidden" value="<?php echo $item['item_id'] ?? 0; ?>" name="item_id">
-                                <button type="submit" name="delete-cart-submit" class="btn font-baloo text-danger px-3 border-right">Delete</button>
+                                <button type="submit" name="delete-cart-submit" class="btn font-baloo text-danger pl-0 pr-3 border-right">Delete</button>
                             </form>
 
                             <form method="post">
                                 <input type="hidden" value="<?php echo $item['item_id'] ?? 0; ?>" name="item_id">
-                                <button type="submit" name="wishlist-submit" class="btn font-baloo text-danger">Save for later</button>
+                                <button type="submit" name="cart-submit" class="btn font-baloo text-danger">Add to cart</button>
                             </form>
                         </div>
                         <!-- product quantity -->
@@ -84,19 +80,6 @@
                 ?>
                 <!-- cart item 1 -->
             </div>
-            <!-- start of subtotal -->
-            <div class="col-sm-3">
-                <div class="sub-total border text-center mt-2">
-                    <h6 class="font-rale font-size-12 text-success py-3">
-                        <i class="fas fa-check"></i>Your order is eligible for FREE delivery.
-                    </h6>
-                    <div class="border-top py-4">
-                        <h5 class="font-baloo font-size-20">Subtotal (<?php echo count($product->getData('cart')); ?> item): &nbsp;<span class="text-danger">$<span class="text-danger" id="deal-price"><?php echo isset($subTotal) ? $Cart->getSum($subTotal): 0; ?></span></h5>
-                        <button class="btn btn-warning mt-3">Proceed to Buy</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of subtotal-->
         </div>
         <!-- Shopping cart items -->
     </div>
