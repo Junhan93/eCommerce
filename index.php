@@ -1,4 +1,6 @@
 <?php
+    ob_start();
+    // the content after ob_start() will not be sent to the browser
     include('header.php');
 ?>
 
