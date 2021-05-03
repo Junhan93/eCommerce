@@ -1,7 +1,7 @@
 <?php
 
 class Product{  
-
+    // when you dont assign a null, it will be 'undefined'.
     public $db = null;
 
     public function __construct(DBController $db) {

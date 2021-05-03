@@ -9,7 +9,7 @@ class DBController{
     protected $database = 'mobile';
 
     // connection property
-    public $conn = null;
+    public $conn = null; // null is assigned because i dont want $conn to be 'undefined'
 
     // call constructor
     public function __construct(){
@@ -22,7 +22,7 @@ class DBController{
     }
 
     public function __destruct(){
-        // TODO: implement __destruct() method
+        // automatically executed when script ends
         $this->closeConnection();
     }
 

@@ -23,7 +23,7 @@ class Cart {
 
                 $values = implode(',', array_values($params));
 
-                // create sql query with sprintf( format, arg1, arg2, arg++ )
+                // assign to $sql_query with sprintf() to insert values into db
                 $query_string = sprintf("INSERT INTO %s(%s) VALUES(%s)", $table, $columns, $values);
                 
                 // execute query
